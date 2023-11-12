@@ -2,7 +2,9 @@
 # Create your views here.
 from django.shortcuts import render, redirect
 from .forms import AutoForm
+from .forms import ClienteForm
 from .models import Auto
+from .models import Cliente
 
 def formulario (request):
 
@@ -21,9 +23,28 @@ def formulario (request):
             "form": AutoForm
  
         })
+    
+def cliente (request):
+    if request.method=="POST":
+        clientecreado=ClienteForm(request.POST)
+        if clientecreado.is_valid():
+            clientenuevo=clientecreado.cleaned_data
+            nombre=clientenuevo.get("nombre")
+            apellido=clientenuevo.get("apellido")
+            contacto=clientenuevo.get("contacto")
+            nuevocliente=Cliente(nombre=nombre,apellido=apellido,contacto=contacto)
+            nuevocliente.save()
+            return redirect("index")
+    else:
+        return render(request, "contacto_templates.html",{
+            "contacto": ClienteForm
+        })
+    
 
 def inicio(request):
     listaauto=Auto.objects.all().values()
+    listacliente=Cliente.objects.all().values()
     return render(request, "mi_template.html",{
         "listaauto": listaauto,
+        "listacliente":listacliente,
     })

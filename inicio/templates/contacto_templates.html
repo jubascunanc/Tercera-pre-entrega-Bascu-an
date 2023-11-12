@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Formulario Cliente{% endblock %}
+
+{% block main %}
+    <h2>Contacto</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ contacto.as_p }}
+        <button type="submit">Enviar</button>
+    </form>
+{% endblock main %}
