@@ -15,7 +15,7 @@ def formulario (request):
             anio=autonuevo.get("anio")
             nuevoauto=Auto(marca=marca,modelo=modelo,anio=anio)
             nuevoauto.save()
-            return redirect("mi_template")
+            return redirect("index")
     else:
         return render(request, "form_templates.html",{
             "form": AutoForm
