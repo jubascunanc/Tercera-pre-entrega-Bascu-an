@@ -1,6 +1,8 @@
 
 # Create your models here.
 from django.db import models
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 class Auto(models.Model):
@@ -14,6 +16,8 @@ class Cliente(models.Model):
     apellido = models.CharField(max_length=30)
     contacto = models.CharField(max_length=30)
 
-class Producto(models.Model):
-    categoria = models.CharField(max_length=30)
-    precio = models.IntegerField()
+
+class PerfilUsuario(models.Model):
+    User = models.OneToOneField(User, on_delete=models.CASCADE)
+
+

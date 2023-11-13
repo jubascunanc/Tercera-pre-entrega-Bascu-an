@@ -2,7 +2,9 @@ from django import forms
 from django.forms import ModelForm
 from .models import Auto
 from .models import Cliente
-from .models import Producto
+from .models import User
+from django.contrib.auth.forms import UserCreationForm
+
 
 
     # Agrega todos los campos necesarios para tu formulario
@@ -17,10 +19,9 @@ class ClienteForm(forms.ModelForm):
         model=Cliente
         fields=["nombre","apellido","contacto"]
 
+class RegistroForm(UserCreationForm):
+    email = forms.EmailField()
 
-class BusquedaForm(forms.Form):
-        termino_busqueda = forms.CharField(max_length=100, required=False, label='Buscar')
-        model=Producto
-        fields=["categoria","precio"]
-      
-
+    class Meta:
+        model= User
+        fields = ['username', 'email', 'password1', 'password2']
