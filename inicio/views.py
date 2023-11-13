@@ -5,6 +5,10 @@ from .forms import AutoForm
 from .forms import ClienteForm
 from .models import Auto
 from .models import Cliente
+from .models import Producto
+from .forms import BusquedaForm
+
+
 
 def formulario (request):
 
@@ -41,10 +45,29 @@ def cliente (request):
         })
     
 
+def busqueda(request):
+    if request.method == 'GET':
+        form = BusquedaForm(request.GET)
+        if form.is_valid():
+            termino_busqueda = form.cleaned_data['termino_busqueda']
+            resultados = Producto.objects.filter(nombre__icontains=termino_busqueda)
+        else:
+            resultados = Producto.objects.all()
+    else:
+        form = BusquedaForm()
+        resultados = Producto.objects.all().values()
+
+    return render(request, 'buscar_productos.html', {
+        'resultados': BusquedaForm
+        })
+
+
 def inicio(request):
     listaauto=Auto.objects.all().values()
     listacliente=Cliente.objects.all().values()
+    listabusqueda=Producto.objects.all().values()
     return render(request, "mi_template.html",{
         "listaauto": listaauto,
         "listacliente":listacliente,
+        "listabusqueda":listabusqueda,
     })
