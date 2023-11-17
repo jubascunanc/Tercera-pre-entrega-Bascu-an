@@ -1,0 +1,23 @@
+<!-- pagina2.html -->
+{% extends 'base.html' %}
+
+<!-- listar_productos.html -->
+
+{% block content%}
+    <title>Listar Productos</title>
+ 
+</head>
+<body>
+
+{% for producto in productos %}
+    <div class="card">
+        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="card-img-top">
+        <div class="card-body">
+            <h5 class="card-title">{{ producto.nombre }}</h5>
+            <p class="card-text">{{ producto.descripcion }}</p>
+            <p class="card-text">Precio: ${{ producto.precio }}</p>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock content%}

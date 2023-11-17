@@ -4,9 +4,16 @@
 
 {% block content %}
     <h1>Cotiza</h1>
+    <p> Elige el tipo de Auto que más te gusta: </p>
+
+    <li> Elige la Marca  </li>
+    <li> Elige el modelo del Auto </li>
+    <li> Elige el Año </li>
+    
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Enviar</button>
+        
     </form>
 {% endblock %}

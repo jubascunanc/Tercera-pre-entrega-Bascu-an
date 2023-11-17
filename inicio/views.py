@@ -8,8 +8,7 @@ from .models import Cliente
 from django.urls import reverse_lazy
 from django.views import generic
 from .forms import RegistroForm
-
-
+from .models import Producto
 
 
 
@@ -54,10 +53,30 @@ class RegistroView(generic.CreateView):
     template_name = 'registro.html'
 
 
+def about_me(request):
+    # Puedes pasar información adicional si es necesario
+    context = {
+        'nombre': 'Juan José Bascuñán',
+        'descripcion': 'Soy un entuasiasta de los autos deportivos.',
+        'intereses': ['Automotriz', 'Mecanica Autos', 'Deportivo'],
+        # Otros datos que desees mostrar en la página
+    }
+    return render(request, 'about_me.html', context)
+
+
+
+def listar_productos(request):
+    productos = Producto.objects.all()
+    return render(request, 'listar_productos.html', {'productos': productos})
+
+
+
 def inicio(request):
     listaauto=Auto.objects.all().values()
     listacliente=Cliente.objects.all().values()
+   
     return render(request, "mi_template.html",{
         "listaauto": listaauto,
         "listacliente":listacliente,
+    
     })

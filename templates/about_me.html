@@ -1,0 +1,36 @@
+<!-- pagina1.html -->
+{% extends 'base.html' %}
+
+{% block header%}  
+
+<title>Acerca de mí</title>  
+
+{% endblock header%}
+
+
+
+{% block content%}
+
+    <h1>{{ nombre }}</h1>
+    <p>{{ descripcion }}</p>
+    
+    <img  src="../static/assets/perfil_trabajo.png" style="width: 200px;">
+
+    <p> Tengo 26 años y soy el creador de PAY CAR una Automotora </p>
+    <p> Buscamos vender y comprar autos coleccionables para clientes privados y ferias </p>
+    <p> Soy Publicista de profesión y junto a mi colega, partimos comprando y permutando </p>
+    <p> Articulos de vehiculos usados y los arreglabamos en un garage junto con el equipo de mecanicos </p>
+    <p> En un tiempo después surgió la idea de importar los accesorios de autos y refaccionarlos</p>
+    <p> Fue así como nació PAY CAR como una opción de remodelación de autos de alta Gama </p>
+    <p> Hoy en día somos una empresa familiar con foco en la permutación de Autos Vehiculos y Motos para eventos </p>
+
+
+    <h2>Intereses:</h2>
+    <ul>
+        {% for interes in intereses %}
+            <li>{{ interes }}</li>
+        {% endfor %}
+    </ul>
+
+    <img src="../static/assets/garage_lujo.jpg" style="width: 400px;">
+{% endblock content%}

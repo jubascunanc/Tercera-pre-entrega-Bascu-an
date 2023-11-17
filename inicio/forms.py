@@ -3,6 +3,7 @@ from django.forms import ModelForm
 from .models import Auto
 from .models import Cliente
 from .models import User
+from .models import Producto
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -25,3 +26,4 @@ class RegistroForm(UserCreationForm):
     class Meta:
         model= User
         fields = ['username', 'email', 'password1', 'password2']
+
